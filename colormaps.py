@@ -1,5 +1,8 @@
 import numpy as np
-from matplotlib.colors import ListedColormap
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+
+
 
 yrwbc= np.array([[1., 1., 0.],
        [1., 0.98431373, 0.],
@@ -1033,7 +1036,81 @@ petrel = np.array([[0.63137255, 1.        , 1.        ],
        [1.        , 1.        , 0.        ]])
 
 
+
+
+
 cmap_sharp = ListedColormap(sharp)
 cmap_yrwbc = ListedColormap(yrwbc)
 odt_seismics = ListedColormap(seismics)
 odt_petrel = ListedColormap(petrel)
+
+
+
+
+# get colormap
+ncolors = 256
+color_array = plt.get_cmap('rainbow')(range(ncolors))
+
+color_FL = color_array
+
+
+#########  Fault likelihood cmap  ###########
+# change alpha values
+color_FL[0:ncolors//2,-1] = np.linspace(0.25,1.0,ncolors//2)
+# color_array[150:-1,-1] = np.linspace(1,0.25,105)
+# create a colormap object
+FL_cmap = LinearSegmentedColormap.from_list(name='FL',colors=color_FL)
+
+
+
+
+########## Thinned fault likelihood cmap #########
+
+# black
+
+color_TFL_black = color_array
+
+color_TFL_black[:,0] = 0
+color_TFL_black[:,1] = 0
+color_TFL_black[:,2] = 0
+
+color_TFL_black[0:ncolors//2,-1] = np.linspace(0.0,0.0,ncolors//2)
+color_TFL_black[ncolors//2:ncolors,-1] = np.linspace(1.0,1.0,ncolors//2)
+
+
+# create a colormap object
+TFL_cmap_black = LinearSegmentedColormap.from_list(name='TFL_black',colors=color_TFL_black)
+
+
+
+# yellow
+
+color_TFL_yellow = color_array
+
+color_TFL_yellow[:,0] = 255/255
+color_TFL_yellow[:,1] = 215/255
+color_TFL_yellow[:,2] = 0/255
+
+color_TFL_yellow[0:ncolors//2,-1] = np.linspace(0.0,0.0,ncolors//2)
+color_TFL_yellow[ncolors//2:ncolors,-1] = np.linspace(1.0,1.0,ncolors//2)
+
+
+# create a colormap object
+TFL_cmap_yellow = LinearSegmentedColormap.from_list(name='TFL_yellow',colors=color_TFL_yellow)
+
+
+# red
+
+color_TFL_red = color_array
+
+color_TFL_red[:,0] = 234/255
+color_TFL_red[:,1] = 95/255
+color_TFL_red[:,2] = 148/255
+
+color_TFL_red[0:ncolors//2,-1] = np.linspace(0.0,0.0,ncolors//2)
+color_TFL_red[ncolors//2:ncolors,-1] = np.linspace(1.0,1.0,ncolors//2)
+
+
+# create a colormap object
+TFL_cmap_red = LinearSegmentedColormap.from_list(name='TFL_red',colors=color_TFL_red)
+
