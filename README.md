@@ -4,6 +4,9 @@ Script showing different colormaps for plotting seismics data.
 
 In addition to default matplotlib colormap, I add the opendtect-like _seismic_ and _Petrel_ opendtect
 
+
+See [seismic_cmaps.ipynb](https://github.com/lperozzi/Seismic_colormaps/blob/master/seismic_cmaps.ipynb) for details.
+
 ### Some examples:
 
 Seismic colormaps: 
